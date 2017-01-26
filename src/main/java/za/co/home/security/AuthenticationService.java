@@ -1,21 +1,24 @@
-package security;
+package za.co.home.security;
 
-import common.Base64Util;
-import model.AuthenticateRequest;
+import za.co.home.common.Base64Util;
+import za.co.home.model.AuthenticateRequest;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Date;
 
 @Path("/authenticate")
+@ApplicationScoped
 public class AuthenticationService {
 
     @POST
-    @Produces("application/json")
-    @Consumes("application/json")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response authenticateUser(AuthenticateRequest request) {
         try {
             String username = request.getUsername();

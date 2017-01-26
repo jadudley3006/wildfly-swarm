@@ -1,6 +1,6 @@
-package security;
+package za.co.home.security;
 
-import common.Base64Util;
+import za.co.home.common.Base64Util;
 
 import javax.annotation.Priority;
 import javax.ws.rs.NotAuthorizedException;

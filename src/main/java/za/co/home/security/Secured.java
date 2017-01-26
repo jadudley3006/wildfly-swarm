@@ -1,4 +1,4 @@
-package security;
+package za.co.home.security;
 
 import javax.ws.rs.NameBinding;
 import java.lang.annotation.ElementType;

@@ -1,4 +1,4 @@
-package model;
+package za.co.home.model;
 
 import java.io.Serializable;
 

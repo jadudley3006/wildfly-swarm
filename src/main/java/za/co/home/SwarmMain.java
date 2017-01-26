@@ -1,7 +1,13 @@
+package za.co.home;
+
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.ClassLoaderAsset;
 import org.wildfly.swarm.Swarm;
 import org.wildfly.swarm.datasources.DatasourcesFraction;
 import org.wildfly.swarm.jaxrs.JAXRSArchive;
+import org.wildfly.swarm.jpa.JPAFraction;
+import za.co.home.greeting.GreetUser;
+import za.co.home.security.AuthenticationService;
 
 public class SwarmMain {
 
@@ -20,15 +26,19 @@ public class SwarmMain {
                             ds.password("***REMOVED***");
                         }));
 
+        swarm.fraction(new JPAFraction()
+                .defaultDatasource("jboss/datasources/MyDS")
+        );
         swarm.start();
 
         JAXRSArchive deployment = ShrinkWrap.create(JAXRSArchive.class);
-
         ClassLoader classLoader = SwarmMain.class.getClassLoader();
-        deployment.addAsWebInfResource(classLoader.getResource("persistence.xml"), "META-INF/persistence.xml");
-        deployment.addPackages(true, Package.getPackages());
+        deployment.addAsWebInfResource(new ClassLoaderAsset("META-INF/persistence.xml", classLoader), "classes/META-INF/persistence.xml");
+        deployment.addPackages(true, "za.co.home");
+        deployment.addResource(Ping.class);
+        deployment.addResource(GreetUser.class);
+        deployment.addResource(AuthenticationService.class);
         deployment.addAllDependencies();
-
         swarm.deploy(deployment);
 
     }

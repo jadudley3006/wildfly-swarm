@@ -1,4 +1,4 @@
-package common;
+package za.co.home.common;
 
 import java.util.Base64;
 

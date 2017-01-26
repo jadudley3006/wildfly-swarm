@@ -1,12 +1,21 @@
-package entity;
+package za.co.home.entity;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "users")
+@NamedQuery(name = "Users.findByUsername", query = "SELECT c FROM UserEntity c WHERE c.username = :username")
+@XmlRootElement
 public class UserEntity implements Serializable {
     private static final long serialVersionUID = 4875513908785399148L;
+
+    public static final String FIND_BY_USERNAME = "Users.findByUsername";
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
     private String username;
     private String password;
