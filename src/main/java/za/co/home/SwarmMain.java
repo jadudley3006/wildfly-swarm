@@ -23,7 +23,7 @@ public class SwarmMain {
                             ds.driverName("com.mysql");
                             ds.connectionUrl("jdbc:mysql://localhost:3306/DBHOME1?useSSL=false&autoReconnect=true");
                             ds.userName("jonathan");
-                            ds.password("***REMOVED***");
+                            ds.password("Goodtimes1");
                         }));
 
         swarm.fraction(new JPAFraction()
